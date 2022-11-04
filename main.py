@@ -24,9 +24,9 @@ def player_input():
         if marker in ['X', 'O']:
             break
         else:
-            print("Please choose a valid marker!")
+            print("\nPlease choose a valid marker!")
 
-    print(f'You have chosen {marker}!')
+    print(f'\nYou have chosen {marker}!')
     return marker
 
 
@@ -85,14 +85,14 @@ def player_choice(board):
             if space_check(board, pos):
                 return pos
             else:
-                print("Position is not available!")
+                print("\nPosition is not available!")
         else:
-            print("Please choose a number between 1 and 9!")
+            print("\nPlease choose a number between 1 and 9!")
 
 
 # Function to check if the players what to play again
 def replay():
-    decision = input("Do you want to play again?(N/Y) ")
+    decision = input("\nDo you want to play again?(N/Y) ")
 
     while decision not in ['Y', 'y', 'N', 'n']:
         decision = input("Do you want to play again?(N/Y) ")
@@ -110,7 +110,7 @@ def game():
 
     turn = choose_first()
 
-    print(f'Player {turn} is first!')
+    print(f'\nPlayer {turn} is first!')
     players[turn] = player_input()
 
     if players[turn] == 'X':
@@ -126,24 +126,22 @@ def game():
     display_board(board)
 
     while not full_board_check(board):
-        print(f"Player {turn}'s turn!")
+        print(f"\nPlayer {turn}'s turn!")
         position = player_choice(board)
         place_marker(board, players[turn], position)
 
         display_board(board)
 
+        # Check for winner after every change
         if win_check(board, players[turn]):
-            print("GAME OVER!")
+            print("\nGAME OVER!")
             print(f'Player {turn} won!')
             return
 
         turn = len(players) - turn
 
-    if win_check(board, players[turn]):
-        print(f'Player {turn} won!')
-    else:
-        print("GAME OVER!")
-        print("Neither one won!")
+    print("\nGAME OVER!")
+    print("Neither one won!")
 
 
 if __name__ == '__main__':
